@@ -1,5 +1,9 @@
 Text Logo Maker (Alpha Logo) a new text styling engine for GIMP.
 
+Download binaries and code here
+
+https://github.com/LinuxBeaver/GEGL-GIMP-PLUGIN_Text_Logo_Maker/releases
+
 ![image](https://github.com/user-attachments/assets/3688b73c-f529-4f2c-ac1d-52227f9c5d1d)
 
 ![image](https://github.com/user-attachments/assets/c25bb13c-3574-4332-a6ca-b49095790663)
