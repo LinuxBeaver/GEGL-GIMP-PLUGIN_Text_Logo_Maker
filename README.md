@@ -20,7 +20,7 @@ Make 1000s of text styles with this awesome new plugin. Check out its modes such
 
 ~/.var/app/org.gimp.GIMP/data/gegl-0.4/plug-ins
 
-Then Restart Gimp and go to "GEGL Operation" and look for "Ocean's Surface 2". Gimp 2.99.16+ users will find the filter in Filters>Render>Fun , where as 2.10 plugins will only be found in the drop down list.
+Then Restart Gimp and go to "GEGL Operation" and look for "Text Logo Maker". Gimp 2.99.16+ users will find the filter in Filters>Text Styling>Alpha Logo, where as 2.10 plugins will only be found in the drop down list.
 
 
 ## Compiling and Installing
