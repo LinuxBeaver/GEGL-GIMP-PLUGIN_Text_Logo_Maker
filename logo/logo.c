@@ -398,7 +398,7 @@ property_seed (innerglowseed, _("Noise seed"), rand)
 ui_meta ("visible", "guichange {bevelinnerglow}")
 
 property_double (innerglowopacity, _("Opacity"), 1.2)
-  value_range   (0.0, 2.0)
+  value_range   (0.0, 1.5)
 ui_meta ("visible", "guichange {bevelinnerglow}")
 
 
@@ -406,6 +406,10 @@ ui_meta ("visible", "guichange {bevelinnerglow}")
 property_double  (innerglowfixoutline, _("Median to fix non-effected pixels on edges"), 60)
   value_range (50, 100)
   description (_("Due to a bug I can't solve, not all pixels will be effected by inner glow. Median blur solves that problem.'"))
+ui_meta ("visible", "guichange {bevelinnerglow}")
+
+property_boolean (innerglowclip, _("Prevent Inner Glow Clip Bug"), TRUE)
+  description    (_("Enable or disable the inner glow's clip. When disabled it will create a border bug when blur radius is high. When enabled it will clip Gimp's layers to image size setting and cause inner glow to not work in layer groups."))
 ui_meta ("visible", "guichange {bevelinnerglow}")
 
 /*Extra outline starts here*/
@@ -484,6 +488,13 @@ property_double (outlinebevelelevation2, _("Elevation of Bevel"), 25.0)
     ui_meta ("unit", "degree")
 ui_meta ("visible", "guichange {extraoutline}")
 
+property_int (outlinebeveldepth2, _("Depth of Bevel"), 24)
+    description (_("Emboss depth of bevel"))
+    value_range (8, 100)
+    ui_meta ("unit", "degree")
+ui_meta ("visible", "guichange {extraoutline}")
+
+
 property_double (outlinebevelgaus2, _("Internal Gaussian Blur of for a normal bevel"), 2)
    description (_("Makes a normal bevel by calling an internal gaussian blur."))
    value_range (0.0, 9.0)
@@ -519,6 +530,12 @@ ui_meta ("visible", "guichange {outlinebevel}")
 property_double (outlinebevelelevation1, _("Elevation of Bevel"), 25.0)
     description (_("Elevation angle (degrees)"))
     value_range (7, 90)
+    ui_meta ("unit", "degree")
+ui_meta ("visible", "guichange {outlinebevel}")
+
+property_int (outlinebeveldepth1, _("Depth of Bevel"), 24)
+    description (_("Emboss depth of bevel"))
+    value_range (8, 100)
     ui_meta ("unit", "degree")
 ui_meta ("visible", "guichange {outlinebevel}")
 
@@ -1001,6 +1018,7 @@ s
   gegl_operation_meta_redirect (operation, "outlinebevelgaus1",  state->outline1, "bevelgaus");
   gegl_operation_meta_redirect (operation, "outlinebevelelevation1",  state->outline1, "bevelelevation");
   gegl_operation_meta_redirect (operation, "outlinebevelazimuth1",  state->outline1, "bevelazimuth");
+  gegl_operation_meta_redirect (operation, "outlinebeveldepth1",  state->outline1, "beveldepth");
   gegl_operation_meta_redirect (operation, "outlinebevelblendmode1",  state->outline1, "bevelblendmode");
 
   gegl_operation_meta_redirect (operation, "outlinecolor2",  state->outline2, "color");
@@ -1019,6 +1037,7 @@ s
   gegl_operation_meta_redirect (operation, "outlinebevelgaus2",  state->outline2, "bevelgaus");
   gegl_operation_meta_redirect (operation, "outlinebevelelevation2",  state->outline2, "bevelelevation");
   gegl_operation_meta_redirect (operation, "outlinebevelazimuth2",  state->outline2, "bevelazimuth");
+  gegl_operation_meta_redirect (operation, "outlinebeveldepth2",  state->outline2, "beveldepth");
   gegl_operation_meta_redirect (operation, "outlinebevelblendmode2",  state->outline2, "bevelblendmode");
 
 
@@ -1052,6 +1071,7 @@ gegl_operation_meta_redirect (operation, "innerglowy",  state->innerglow, "y");
 gegl_operation_meta_redirect (operation, "innerglowradius", state->innerglow, "radius");
 gegl_operation_meta_redirect (operation, "innerglowopacity",  state->innerglow, "opacity");
 gegl_operation_meta_redirect (operation, "innerglowgrowradius",  state->innerglow, "grow_radius");
+gegl_operation_meta_redirect (operation, "innerglowclip",  state->innerglow, "clippolicy");
 
 gegl_operation_meta_redirect (operation, "innerglowcolor",  state->innerglow2, "value2");
 gegl_operation_meta_redirect (operation, "innerglowfixoutline",  state->innerglow2, "fixoutline");
@@ -1060,7 +1080,7 @@ gegl_operation_meta_redirect (operation, "innerglowy",  state->innerglow2, "y");
 gegl_operation_meta_redirect (operation, "innerglowradius", state->innerglow2, "radius");
 gegl_operation_meta_redirect (operation, "innerglowopacity",  state->innerglow2, "opacity");
 gegl_operation_meta_redirect (operation, "innerglowgrowradius",  state->innerglow2, "grow_radius");
-
+gegl_operation_meta_redirect (operation, "innerglowclip",  state->innerglow2, "clippolicy");
 
   gegl_operation_meta_redirect (operation, "glassstddev", state->glassovertext, "std-dev");
   gegl_operation_meta_redirect (operation, "glassblur", state->glassovertext, "blur");
