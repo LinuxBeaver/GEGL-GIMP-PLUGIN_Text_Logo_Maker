@@ -188,7 +188,7 @@ static void attach (GeglOperation *operation)
  "light-color", hidden_color_aura2, NULL);
 
   gblur2   = gegl_node_new_child (gegl,
-                                  "operation", "gegl:gaussian-blur",
+                                  "operation", "gegl:gaussian-blur", "clip-extent", 0, "abyss-policy", 0,
                                   NULL);
 
 
@@ -205,7 +205,7 @@ static void attach (GeglOperation *operation)
                                   NULL);
 
   lblur   = gegl_node_new_child (gegl,
-                                  "operation", "gegl:lens-blur",
+                                  "operation", "gegl:lens-blur", "clip", 0, 
                                   NULL);
 
   nop   = gegl_node_new_child (gegl,
@@ -213,11 +213,11 @@ static void attach (GeglOperation *operation)
                                   NULL);
 
   gblur    = gegl_node_new_child (gegl,
-                                  "operation", "gegl:gaussian-blur",
+                                  "operation", "gegl:gaussian-blur", "clip-extent", 0, "abyss-policy", 0,
                                   NULL);
 
   fixgraph = gegl_node_new_child (gegl,
-                                  "operation", "gegl:median-blur", "radius", 0,
+                                  "operation", "gegl:median-blur", "radius", 0, "abyss-policy", 0, 
                                   NULL);
 
 /* Median Blur at 0 repairs a GEGL Graph from Opacity bug. This is for Gimp's non-destructive future */
