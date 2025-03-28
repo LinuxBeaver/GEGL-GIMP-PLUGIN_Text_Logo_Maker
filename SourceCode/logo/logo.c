@@ -229,7 +229,7 @@ enum_end (GeglgimplayershadowGrowShapelogo)
 
 enum_start (logodisplay)
 enum_value   (MAINLOGO, "main", N_("Main"))
-enum_value   (BEVELIGLOGO, "bevelinnerglow", N_("Bevel Inner Glow"))
+enum_value   (BEVELIGLOGO, "bevelinnerglow", N_("Bevel and Inner Glow"))
 enum_value   (OUTLINEBEVELLOGO, "outlinebevel", N_("Outline Bevel"))
 enum_value   (EXTRAOUTLINELOGO, "extraoutline", N_("Extra Outline"))
 enum_value   (GLASSLOGO, "glass", N_("Glass Over Text"))
@@ -663,8 +663,8 @@ ui_meta ("visible", "guichange {glass}")
 
 property_double (glasshyperopacity, _("Hyper Opacity"), 1.0)
     description (_("Opacity Above 100 to make effect more noticable"))
-    value_range (0.3, 1.5)
-    ui_range    (1.0, 1.5)
+    value_range (0.3, 2.0)
+    ui_range    (1.0, 2.0)
   ui_steps      (0.1, 0.50)
 ui_meta ("visible", "guichange {glass}")
 
@@ -970,7 +970,7 @@ s
  state->aura = gegl_node_new_child (gegl, "operation", "lb:aura", "tile-size", 8.0, "color", white2, "opacity", 1.5, NULL);
  state->sinus = gegl_node_new_child (gegl, "operation", "gegl:sinus", "color1", sinuscolor1, "color2", sinuscolor2, "complexity", 1.0, "blend-mode", 0, NULL);
  state->gray = gegl_node_new_child (gegl, "operation", "gegl:gray", NULL);
- state->glassovertext = gegl_node_new_child (gegl, "operation", "lb:glassovertext", "glassover", 1,  NULL);
+ state->glassovertext = gegl_node_new_child (gegl, "operation", "lb:glassovertext", "glassover", 5,  NULL);
  state->nothingaura = gegl_node_new_child (gegl, "operation", "gegl:nop", NULL);
  state->ignop2 = gegl_node_new_child (gegl, "operation", "gegl:nop", NULL);
  state->covernormalinnerglow = gegl_node_new_child (gegl, "operation", "gegl:src", NULL);
@@ -1262,12 +1262,12 @@ GeglOperationMetaClass *operation_meta_class = GEGL_OPERATION_META_CLASS (klass)
 
   gegl_operation_class_set_keys (operation_class,
     "name",        "lb:logo",
-    "title",       _("Text Logo Maker"),
+    "title",       _("Graphical Text Assistant"),
     "reference-hash", "ageofwaraddiction",
-    "description", _("Make highly customizable logos with many options"),
+    "description", _("Make highly customizable text styles with many options"),
 /*<Image>/Colors <Image>/Filters are top level menus in GIMP*/
     "gimp:menu-path", "<Image>/Filters/Text Styling",
-    "gimp:menu-label", _("Alpha logo..."),
+    "gimp:menu-label", _("Graphical Text Assistant (Logo)..."),
     NULL);
 }
 
