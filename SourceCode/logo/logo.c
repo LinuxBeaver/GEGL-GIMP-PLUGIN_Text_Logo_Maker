@@ -934,10 +934,10 @@ s
  state->ignop3 = gegl_node_new_child (gegl, "operation", "gegl:nop", NULL);
  state->nothingcolor = gegl_node_new_child (gegl, "operation", "gegl:nop", NULL);
  state->nopinput = gegl_node_new_child (gegl, "operation", "gegl:nop", NULL);
- state->normal1 = gegl_node_new_child (gegl, "operation", "gegl:over", NULL);
+ state->normal1 = gegl_node_new_child (gegl, "operation", "gegl:dst-over", NULL);
  state->nothingoutline1 = gegl_node_new_child (gegl, "operation", "gegl:nop", NULL);
  state->nothingoutline2 = gegl_node_new_child (gegl, "operation", "gegl:nop", NULL);
- state->normal2 = gegl_node_new_child (gegl, "operation", "gegl:over", NULL);
+ state->normal2 = gegl_node_new_child (gegl, "operation", "gegl:dst-over", NULL);
  state->nothingnormal1 = gegl_node_new_child (gegl, "operation", "gegl:dst", NULL);
  state->nothingnormal2 = gegl_node_new_child (gegl, "operation", "gegl:dst", NULL);
 
